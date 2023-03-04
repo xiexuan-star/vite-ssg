@@ -1,9 +1,8 @@
-import { createApp } from 'vue';
-
-import App from '../theme-default/App.vue';
+import { createApp } from '../theme-default/main';
 
 function renderInBrowser() {
-  createApp(App).mount('#app');
+  return createApp().mount('#app');
 }
 
 renderInBrowser();
+
