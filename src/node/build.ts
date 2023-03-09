@@ -1,6 +1,6 @@
 import vue from '@vitejs/plugin-vue';
-import * as fs from 'fs-extra';
-import * as path from 'path';
+import fs from 'fs-extra';
+import path from 'path';
 import { build as viteBuild, InlineConfig } from 'vite';
 import { CLIENT_ENTRY_PATH, DEFAULT_HTML_PATH, SERVER_ENTRY_PATH } from './constants';
 import { RollupOutput } from 'rollup';
@@ -39,7 +39,7 @@ export async function build(root: string) {
   const [clientBundle] = await bundle(root) as [RollupOutput, RollupOutput];
 
   const serverEntryPath = path.resolve(root, '.temp', 'server-entry.js');
-  const { renderInServer } = require(serverEntryPath);
+  const { renderInServer } = await import(serverEntryPath);
 
   await renderPage(renderInServer, root, clientBundle);
 }
